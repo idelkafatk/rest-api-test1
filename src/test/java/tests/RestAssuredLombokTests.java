@@ -1,8 +1,11 @@
 package tests;
 
+import helpers.CustomApiListener;
+import io.qameta.allure.restassured.AllureRestAssured;
 import models.lombok.LoginLombokModel;
 import org.junit.jupiter.api.Test;
 
+import static helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
@@ -16,6 +19,7 @@ public class RestAssuredLombokTests {
         body.setPassword("ityslicka");
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .contentType(JSON)
                 .body(body)
@@ -33,6 +37,7 @@ public class RestAssuredLombokTests {
         body.setEmail("eve.holt@reqres.in");
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .contentType(JSON)
                 .body(body)
@@ -49,6 +54,7 @@ public class RestAssuredLombokTests {
     void userNotFoundTest() {
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .when()
                 .get("https://reqres.in//api/users/23")
@@ -61,6 +67,7 @@ public class RestAssuredLombokTests {
     void getListOfUsersTest() {
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .when()
                 .get("https://reqres.in/api/users?page=2")
@@ -75,6 +82,7 @@ public class RestAssuredLombokTests {
         body.setPassword("pistol");
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .contentType(JSON)
                 .body(body)
