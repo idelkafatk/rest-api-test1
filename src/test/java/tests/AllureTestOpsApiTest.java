@@ -48,6 +48,7 @@ public class AllureTestOpsApiTest {
         testCaseBody.setName(testcaseName);
 
         int testCaseId = given()
+                .when()
                 .log().all()
                 .header("X-XSRF-TOKEN", xsrfToken)
                 .cookies("XSRF-TOKEN", xsrfToken,
